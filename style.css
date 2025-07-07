@@ -1,0 +1,514 @@
+/* 1. CONFIGURAÇÃO GERAL E VARIÁVEIS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
+
+:root {
+    --purple-dark: #1a0a2e;
+    --purple-deep: #2c0b4d;
+    --lilac-neon: #ab61ff;
+    --ice-white: #f0f8ff;
+    --black-matte: #121212;
+    --font-main: 'Poppins', sans-serif;
+    --font-mystic: 'Cinzel Decorative', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--purple-dark);
+    color: var(--ice-white);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* 2. FUNDO MÁGICO ANIMADO */
+.magic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+    background: linear-gradient(45deg, var(--purple-dark), var(--purple-deep), #4d156f, var(--purple-dark));
+    background-size: 400% 400%;
+    animation: smoke-animation 20s ease infinite;
+}
+
+@keyframes smoke-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.sparkles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="10" fill="rgba(255,255,255,0.3)">✦</text></svg>');
+    animation: sparkle-animation 15s linear infinite;
+}
+
+@keyframes sparkle-animation {
+    from { background-position: 0 0; }
+    to { background-position: -1000px 500px; }
+}
+
+/* 3. CABEÇALHO E NAVEGAÇÃO */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(18, 18, 18, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(171, 97, 255, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.main-header .logo img {
+    height: 40px;
+}
+
+.main-nav a {
+    color: var(--ice-white);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 700;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--lilac-neon);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: var(--lilac-neon);
+}
+
+.main-nav a:hover::after, .main-nav a.active::after {
+    width: 100%;
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: var(--ice-white);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 4. SEÇÕES PRINCIPAIS */
+section {
+    padding: 100px 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.section-title {
+    font-family: var(--font-mystic);
+    font-size: 3rem;
+    color: var(--lilac-neon);
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.glow-effect {
+    text-shadow: 0 0 10px var(--lilac-neon), 0 0 20px var(--lilac-neon);
+}
+
+/* 5. ESTILOS ESPECÍFICOS DAS SEÇÕES */
+
+/* Hero Section */
+.hero-section {
+    justify-content: center;
+}
+.hero-logo {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+.slogan {
+    font-family: var(--font-mystic);
+    font-size: 2rem;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+.cta-button {
+    background: var(--lilac-neon);
+    color: var(--black-matte);
+    font-family: var(--font-main);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: 2px solid var(--lilac-neon);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--lilac-neon);
+}
+.cta-button:hover {
+    background: transparent;
+    color: var(--lilac-neon);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 25px var(--lilac-neon);
+}
+.social-icons {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 20px;
+}
+.social-icons a {
+    color: var(--ice-white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--lilac-neon);
+    transform: scale(1.2);
+    text-shadow: 0 0 10px var(--lilac-neon);
+}
+
+/* Sobre Section */
+.about-section {
+    background-color: rgba(0,0,0,0.3);
+}
+.witches-container {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.witch-card {
+    background: var(--black-matte);
+    border: 2px solid var(--lilac-neon);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(171, 97, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+.witch-card:hover {
+    transform: scale(1.05);
+}
+.witch-card img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.witch-card h2 {
+    margin-top: 15px;
+    font-family: var(--font-mystic);
+    font-size: 1.8rem;
+}
+.about-description {
+    max-width: 800px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Agenda Section */
+.agenda-section {
+    background-color: rgba(0,0,0,0.5);
+}
+.events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+.event-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black-matte);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid var(--lilac-neon);
+    text-align: left;
+}
+.event-info p {
+    margin: 5px 0;
+}
+.event-button {
+    background: transparent;
+    color: var(--lilac-neon);
+    border: 2px solid var(--lilac-neon);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+.event-button:hover {
+    background: var(--lilac-neon);
+    color: var(--black-matte);
+}
+
+/* Mídia Section */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+.media-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.media-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.media-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    font-weight: 700;
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+.media-item:hover {
+    border-color: var(--lilac-neon);
+    box-shadow: 0 0 20px var(--lilac-neon);
+}
+.media-item:hover img {
+    transform: scale(1.1);
+}
+.media-item:hover span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Depoimentos Section */
+.testimonials-section {
+    min-height: 60vh;
+}
+.tarot-card {
+    background: var(--black-matte);
+    border: 2px solid var(--lilac-neon);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px;
+    box-shadow: 0 0 30px rgba(171, 97, 255, 0.4);
+    position: relative;
+}
+.tarot-card::before {
+    content: '★';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.5rem;
+    color: var(--lilac-neon);
+}
+.tarot-card blockquote {
+    font-family: var(--font-mystic);
+    font-size: 1.5rem;
+    border: none;
+    padding: 0;
+}
+.tarot-card cite {
+    display: block;
+    margin-top: 20px;
+    color: var(--lilac-neon);
+    font-weight: 700;
+}
+
+/* Rodapé */
+.main-footer {
+    min-height: auto;
+    background: var(--black-matte);
+    padding: 40px 20px;
+}
+.footer-social {
+    margin-bottom: 20px;
+}
+.footer-social a {
+    color: var(--ice-white);
+    text-decoration: none;
+    font-size: 2rem;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+.footer-social a:hover {
+    color: var(--lilac-neon);
+}
+.footer-slogan {
+    font-family: var(--font-mystic);
+    margin-bottom: 15px;
+}
+.footer-contact a {
+    color: var(--lilac-neon);
+    text-decoration: none;
+}
+.footer-credits {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* Botão Flutuante WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Animações de Scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ajuste Fino para o Modal do SoundCloud */
+.basicLightbox__placeholder {
+    padding: 0 !important;
+}
+.basicLightbox__placeholder iframe {
+    display: block; /* Remove qualquer espaço extra */
+}
+
+
+/* 6. RESPONSIVIDADE (MOBILE) */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 15px 20px;
+    }
+    .main-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        height: 100vh;
+        background: var(--black-matte);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    .main-nav.is-active {
+        display: flex;
+        transform: translateX(0);
+    }
+    .main-nav a {
+        margin: 20px 0;
+        font-size: 1.5rem;
+    }
+    .hamburger-menu {
+        display: block;
+    }
+    .hamburger-menu.is-active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger-menu.is-active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.is-active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -8px);
+    }
+
+    section {
+        padding: 80px 20px;
+    }
+    .hero-logo {
+        max-width: 250px;
+    }
+    .slogan {
+        font-size: 1.5rem;
+    }
+    .witches-container {
+        flex-direction: column;
+    }
+    .witch-card img {
+        width: 200px;
+        height: 200px;
+    }
+    .event-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
